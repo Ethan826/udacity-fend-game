@@ -20,14 +20,14 @@ class Resources {
         this.readyCallbacks = [];
     }
 
-    get(url): HTMLImageElement {
+    get(url: string): HTMLImageElement {
         return this.resourceCache[url] as HTMLImageElement;
     }
 
     load(urlOrArr: string[] | string) {
-        if(urlOrArr instanceof Array) {
+        if (urlOrArr instanceof Array) {
             urlOrArr.forEach(function(url) {
-                this.loadHelper(url)
+                this.loadHelper(url);
             });
         } else if (urlOrArr instanceof String) {
             this.loadHelper(urlOrArr);
@@ -35,14 +35,14 @@ class Resources {
     }
 
     private loadHelper(url: string) {
-        if(this.resourceCache[url]) {
+        if (this.resourceCache[url]) {
             return this.resourceCache[url];
         } else {
             let img = new Image();
             img.onload = function() {
                 this.resourceCache[url] = img;
-                if(this.isReady()) {
-                    this.readyCallbacks.forEach(function(func) { func(); });
+                if (this.isReady()) {
+                    this.readyCallbacks.forEach(function(func: Function) { func(); });
                 }
             };
             this.resourceCache[url] = false;
@@ -52,15 +52,15 @@ class Resources {
 
     private isReady(): boolean {
         let ready = true;
-        for(let k in this.resourceCache) {
-            if(this.resourceCache.hasOwnProperty(k) && !this.resourceCache[k]) {
+        for (let k in this.resourceCache) {
+            if (this.resourceCache.hasOwnProperty(k) && !this.resourceCache[k]) {
                 ready = false;
             }
         }
         return ready;
     }
 
-    onReady(func) {
+    onReady(func: any) { // Fix this
         this.readyCallbacks.push(func);
     }
 }

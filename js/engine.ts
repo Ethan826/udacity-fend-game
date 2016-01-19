@@ -18,13 +18,13 @@ class Engine {
     constructor() {
         this.game = new Game();
         this.resources.load([
-            'images/stone-block.png',
-            'images/water-block.png',
-            'images/grass-block.png',
-            'images/enemy-bug.png',
-            'images/char-boy.png']);
-        this.canvas = this.doc.createElement('canvas');
-        this.ctx = this.canvas.getContext('2d');
+            "images/stone-block.png",
+            "images/water-block.png",
+            "images/grass-block.png",
+            "images/enemy-bug.png",
+            "images/char-boy.png"]);
+        this.canvas = this.doc.createElement("canvas");
+        this.ctx = this.canvas.getContext("2d");
         this.canvas.width = 505;
         this.canvas.height = 606;
         this.doc.body.appendChild(this.canvas);
@@ -40,12 +40,12 @@ class Engine {
         this.render();
     }
 
-    update(dt) {
+    update(dt: number) {
         this.updateEntities(dt);
         // checkCollisions();
     }
 
-    updateEntities(dt) {
+    updateEntities(dt: number) {
         this.game.allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
@@ -54,28 +54,28 @@ class Engine {
 
     render() {
         let rowImages = [
-            'images/water-block.png',   // Top row is water
-            'images/stone-block.png',   // Row 1 of 3 of stone
-            'images/stone-block.png',   // Row 2 of 3 of stone
-            'images/stone-block.png',   // Row 3 of 3 of stone
-            'images/grass-block.png',   // Row 1 of 2 of grass
-            'images/grass-block.png'    // Row 2 of 2 of grass
+            "images/water-block.png",   // Top row is water
+            "images/stone-block.png",   // Row 1 of 3 of stone
+            "images/stone-block.png",   // Row 2 of 3 of stone
+            "images/stone-block.png",   // Row 3 of 3 of stone
+            "images/grass-block.png",   // Row 1 of 2 of grass
+            "images/grass-block.png"    // Row 2 of 2 of grass
         ];
         let numRows = 6;
         let numCols = 5;
 
-        /* Loop through the number of rows and columns we've defined above
+        /* Loop through the number of rows and columns we"ve defined above
          * and, using the rowImages array, draw the correct image for that
          * portion of the "grid"
          */
         for (let row = 0; row < numRows; ++row) {
             for (let col = 0; col < numCols; ++col) {
-                /* The drawImage function of the canvas' context element
+                /* The drawImage function of the canvas" context element
                  * requires 3 parameters: the image to draw, the x coordinate
                  * to start drawing and the y coordinate to start drawing.
-                 * We're using our Resources helpers to refer to our images
+                 * We"re using our Resources helpers to refer to our images
                  * so that we get the benefits of caching these images, since
-                 * we're using them over and over.
+                 * we"re using them over and over.
                  */
                 this.ctx.drawImage(this.resources.get(rowImages[row]), col * 101, row * 83);
             }

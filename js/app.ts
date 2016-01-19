@@ -1,4 +1,5 @@
 /// <reference path="engine.ts"/>
+/// <reference path="../typings/jquery/jquery.d.ts"/>
 
 // Enemies our player must avoid
 
@@ -43,19 +44,17 @@ class Game {
     player: Player;
     eventListener: EventListener;
 
+    private allowedKeys = {
+        37: 'left',
+        38: 'up',
+        39: 'right',
+        40: 'down'
+    }
+
     constructor() {
         //initialize player and enemies
-        document.addEventListener('keyup', function(e) {
-            let allowedKeys = {
-                37: 'left',
-                38: 'up',
-                39: 'right',
-                40: 'down'
-            };
-            this.player.handleInput(allowedKeys[e.keyCode]);
+        $("document").keyup(function(e) {
+            this.player.handleInput(this.allowedKeys[e.keyCode]);
         });
     }
 }
-
-
-

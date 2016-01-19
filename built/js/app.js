@@ -1,12 +1,12 @@
 /// <reference path="engine.ts"/>
+/// <reference path="../typings/jquery/jquery.d.ts"/>
 // Enemies our player must avoid
 var Enemy = (function () {
     function Enemy() {
         this.sprite = "images/enemy-bug.png";
     }
-    // Update the enemy's position, required method for game
-    // Parameter: dt, a time delta between ticks
     Enemy.prototype.update = function (dt) {
+        // Multiply td and use to translate x and y coordinates.
     };
     Enemy.prototype.render = function (dt, ctx, resources) {
         // You should multiply any movement by the dt parameter
@@ -30,15 +30,15 @@ var Player = (function () {
 // Now instantiate your objects.
 var Game = (function () {
     function Game() {
+        this.allowedKeys = {
+            37: 'left',
+            38: 'up',
+            39: 'right',
+            40: 'down'
+        };
         //initialize player and enemies
-        document.addEventListener('keyup', function (e) {
-            var allowedKeys = {
-                37: 'left',
-                38: 'up',
-                39: 'right',
-                40: 'down'
-            };
-            this.player.handleInput(allowedKeys[e.keyCode]);
+        $("document").keyup(function (e) {
+            this.player.handleInput(this.allowedKeys[e.keyCode]);
         });
     }
     return Game;
