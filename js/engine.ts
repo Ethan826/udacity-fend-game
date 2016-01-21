@@ -73,9 +73,9 @@ class Engine {
                 /* The drawImage function of the canvas" context element
                  * requires 3 parameters: the image to draw, the x coordinate
                  * to start drawing and the y coordinate to start drawing.
-                 * We"re using our Resources helpers to refer to our images
+                 * We're using our Resources helpers to refer to our images
                  * so that we get the benefits of caching these images, since
-                 * we"re using them over and over.
+                 * we're using them over and over.
                  */
                 this.ctx.drawImage(this.resources.get(rowImages[row]), col * 101, row * 83);
             }

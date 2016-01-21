@@ -5,9 +5,9 @@
  * to load the same image multiple times.
  */
 
- interface ResourceCache {
-     [url: string]: HTMLImageElement | boolean;
- }
+interface ResourceCache {
+    [url: string]: HTMLImageElement | boolean;
+}
 
 class Resources {
     resourceCache: ResourceCache;
